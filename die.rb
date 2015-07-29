@@ -20,7 +20,8 @@ end
 
 # Game over
 def game_over(score)
-    puts "Game Over. You scored #{score} points"
+    puts "You scored #{score} points"
+    return score
 end
 
 
@@ -34,6 +35,7 @@ def play_pig(score = 0)
     if roll == 1
       score = 0
       game_over(score)
+
     else
       score += roll
       puts "You have #{score} points"
@@ -46,7 +48,62 @@ def play_pig(score = 0)
 
 end
 
-play_pig
+def play_pig__cpu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end
+
+
+
+
+
+def play_pig_multiplayer
+  player1score = play_pig
+  puts "Now player 2's turn"
+  player2score = play_pig
+  puts "Player 1 scored #{player1score} points."
+  puts "Player 2 scored #{player2score} points."
+
+  if player1score > player2score
+    puts "Congratulations Player 1!"
+  
+  elsif player1score == player2score
+    puts "Tie game!"
+
+  else
+    puts "Congratulations Player 2! This game was rigged for you to win"
+  end
+
+end
+
+def play_pig__vs_computer
+  player1score = play_pig
+  puts "Now it's the computer's turn"
+  cpuscore = play_pig__cpu
+ 
+
+
+
+
+
+
+end
+
+play_pig_multiplayer
 
 
 
