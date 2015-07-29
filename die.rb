@@ -1,19 +1,22 @@
 require 'pry'
 
 def roll_dice
-  rand(1..6)
-
-
+  roll = rand(1..6)
+  puts "You rolled a #{roll}"
+  return roll
 end
 
 # Ask player if they want to roll again or hold
 
 def choose_roll_or_hold
-
   puts "Would you like to roll or hold?"
-  gets.chomp.downcase
-
+  choice = gets.chomp.downcase
+  while choice != "roll" && choice != "hold" do 
+    choice = choose_roll_or_hold
+  end
+  return choice
 end
+
 
 # Game over
 def game_over(score)
@@ -21,39 +24,27 @@ def game_over(score)
 end
 
 
-        def play_pig(score = 0)
+def play_pig(score = 0)
 
-            choice = choose_roll_or_hold
-            
+  choice = choose_roll_or_hold            
 
-            while choice != "roll" && choice != "hold" do 
-              choice = choose_roll_or_hold
-            end
+  if choice == "roll"
+    roll = roll_dice
 
-            if choice == "roll"
-              roll = roll_dice
+    if roll == 1
+      score = 0
+      game_over(score)
+    else
+      score += roll
+      puts "You have #{score} points"
+      play_pig(score)
+    end
+  
+  else
+    game_over(score)
+  end
 
-              if roll == 1
-                score = 0
-                puts "You rolled a #{roll}"
-                game_over(score)
-
-              else
-                score += roll
-                puts "You rolled a #{roll}"
-                puts "You have #{score} points"
-                play_pig(score)
-              end
-            
-            else
-              game_over(score)
-
-            end
-
-
-        end
-
-
+end
 
 play_pig
 
